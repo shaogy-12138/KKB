@@ -18,6 +18,7 @@ int main(int argc, char *argv[]){
 
     char buf[20] = {0};
     int n;
+    //n = read(STDIN_FILENO, buf, 10);
     n = read(STDIN_FILENO, buf, 10);
     if(n < 0){
         perror("READ");
