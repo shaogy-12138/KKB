@@ -14,7 +14,9 @@
 #include<stdio.h>
 #include<sys/types.h>
 #include<sys/stat.h>
+#include<sys/ioctl.h>
 #include<fcntl.h>
 #include<unistd.h>
 #include<errno.h>
 #include<stdlib.h>
+#include<sys/mman.h>
