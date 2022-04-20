@@ -29,7 +29,7 @@ void init_NIL(){
 Node *getNewNode(int key){
     Node *p = (Node *)malloc(sizeof(Node));
     p->val = key;
-    p->size = 0;
+    p->size = 1;
     p->lchild = p->rchild = NIL;
     return p;
 }
