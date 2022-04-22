@@ -155,7 +155,7 @@ Node *erase(Node *root, int target){
     }
 
     update_h(root);
-    return root;
+    return maintain(root);
 }
 
 void in_order(Node *root){
