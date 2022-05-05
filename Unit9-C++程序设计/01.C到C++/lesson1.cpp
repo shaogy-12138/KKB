@@ -14,10 +14,90 @@
 #include<map>
 using namespace std;
 
+void output(const std::map<string, int>*mp, const string str){
 
+    cout<<"=================="<<str<<"=================="<<endl;
+    for(auto it: *mp){
+        cout<<"key["<<it.first<<"] = "<<it.second<<endl;
+    }
+
+    
+}
+
+void routput(const std::map<string, int> *mp, const string str){
+
+    cout<<"=================="<<str<<"=================="<<endl;
+    std::map<string, int>::reverse_iterator rit;
+    for(rit= (*mp).rbegin(); rit != (*mp).rend(); ++rit){
+        cout<<"key["<<rit->first<<"] = "<<rit->second<<endl;
+    }
+
+    
+}
 int main(){
 
+    // 初始化/修改
+    // 1. 定义时初始化
+    std::map<string, int>mp = {{"abc", 10}, {"bcd", 20}, {"dasd", 100}}; 
+    //output(&mp, "定义时初始化");
+    // 2. map[key] = value初始化， 如果已经存在，修改val值
+    mp["abc"] = 99;
+    mp["las"] = 10;
+    //output(&mp, "索引初始化");
+    // 3. mp.insert(pair<key_type, val_type>(key, val)) 插入/初始化值
+    mp.insert(pair<string, int>("shao", 55));
+    mp.insert(pair<string, int>("las", 55)); // 存在， 不变化
+    //output(&mp, "inset 插入/修改");
+    // 4. mp.at(key) = val 如果key-val不存在， 会报错(out_of_range)；如果存在，修改val值
+    //mp.at("loa") = 123; 
+    //mp.at("las") = 666;
+    //output(&mp, "at 修改");
 
+    // find查找
+    auto its = mp.find("las");
+    if(its != mp.end()) 
+    {
+        cout<<"find this item"<<endl;
+        cout<<"key["<<its->first<<"] = "<<its->second<<endl;
+    }
+    else cout<<"not find this item"<<endl;
+
+    // count: 统计key-val个数
+    cout<<mp.count("las")<<endl; // 存在， return 1
+    cout<<mp.count("lass")<<endl; // 不存在， return 0
+
+    // size： key-val个数
+    cout<<"my size is : "<<mp.size()<<endl;
+
+    // max_size: 可以含有的最多key-val个数; 这个应该和环境相关
+    cout<<"mp max_size is : "<<mp.max_size()<<endl;
+
+    // empty(): 判断是否为空
+    // erase(map): 删除一个元素
+    // clear(): 清除整个map
+
+    map<string, int> mp2 = mp;
+    output(&mp2, "mp2");
+    routput(&mp2, "reverse mp2");
+    cout<<mp2.size()<<endl;
+
+    mp2.clear();
+    cout<<"after clear, mp2.size = "<<mp2.size()<<endl;
+
+    while(!mp2.empty()){
+
+        mp2.erase(mp2.begin());
+        output(&mp2, "mp2");
+        cout<<mp2.size()<<endl;
+        
+    }
+    
+
+
+
+
+    return 0;
+    //map
     map<string, int>mmap;
 
     mmap["adds"] = 123;
